@@ -5,8 +5,6 @@
 *.diff
 *.patch
 *.swp
-*.exe
-*.dll
 *.pdb
 *.suo
 *.user
