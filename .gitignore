@@ -1,0 +1,16 @@
+*~
+*.o
+*.obj
+*.tmp
+*.diff
+*.patch
+*.swp
+*.exe
+*.dll
+*.pdb
+*.suo
+*.user
+*.sdf
+*.opensdf
+ByteShop/bin
+ByteShop/obj
