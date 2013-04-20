@@ -1,0 +1,2 @@
+﻿create user 'byteshop'@'localhost' identified by '123456';
+GRANT ALL ON *.* TO 'byteshop'@'localhost';
