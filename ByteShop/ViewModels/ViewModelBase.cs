@@ -7,7 +7,8 @@ namespace ByteShop.ViewModels
 {
     public class ViewModelBase
     {
-        public virtual string Title {
+        public virtual string Title
+        {
             get { return ""; }
         }
     }

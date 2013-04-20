@@ -1,9 +1,27 @@
-﻿@model ByteShop.ViewModels.MainPageViewModel
+﻿@model ByteShop.ViewModels.EntityListViewModel
 
-<div id="resize" class="ui-widget-content" style="width: 150px; margin: 5px;padding: 1px;">
-    <h3 class="ui-widget-header">Resize</h3>
-    <div>Main page</div>
-</div>
+<button id="AddButton">Add</button>
+<input id="Description" type="text"/>
 <script type="text/javascript">
-    $("#resize").resizable();
+    $("#AddButton").click(function () {
+        $.ajax(
+            "/Main/Create",
+            {
+                data: { description: $("#Description").val() },
+                success: function (data, status, jqxz) {
+                    $("#List").append("<div>" + data.Description + "</div>");
+                },
+                type : 'POST'
+            }
+        );
+    });
 </script>
+
+<div id="List">
+@foreach (var e in @Model.Entities)
+{
+    <div>
+        @e.Description
+    </div>
+}
+    </div>
