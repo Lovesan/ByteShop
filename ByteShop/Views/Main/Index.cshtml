@@ -1,7 +1,7 @@
 ﻿@model ByteShop.ViewModels.EntityListViewModel
 
 <button id="AddButton">Add</button>
-<input id="Description" type="text"/>
+<input id="Description" type="text" class="textinput" />
 <script type="text/javascript">
     $("#AddButton").click(function () {
         $.ajax(
@@ -9,19 +9,37 @@
             {
                 data: { description: $("#Description").val() },
                 success: function (data, status, jqxz) {
-                    $("#List").append("<div>" + data.Description + "</div>");
+                    $("#List").append(
+                        '<div class="ui-widget-content entity"'+ 'id="Entity_' + data.Id +'"' + ">" +
+                        "<button onclick='removeButtonClick(" + data.Id + ")' class='remove-button'>X</button>" +
+                        '<span class="desc">' + data.Description + "</span>" + "</div>");
                 },
-                type : 'POST'
+                type: 'POST'
             }
         );
     });
+
+    function removeButtonClick(id) {
+        $.ajax(
+        "/Main/Delete/",
+            {
+                data: { Id : id },
+                success: function (data, status, jqxz) {
+                    $("#Entity_" + id).remove();
+                },
+                type: 'POST'
+            });
+    }
 </script>
 
 <div id="List">
-@foreach (var e in @Model.Entities)
-{
-    <div>
-        @e.Description
-    </div>
-}
-    </div>
+    @foreach (var e in @Model.Entities)
+    {
+        <div class="ui-widget-content entity" id="Entity_@e.Id">
+            <button onclick="removeButtonClick(@e.Id)" class="remove-button">X</button>
+            <span class="desc">
+                @e.Description
+            </span>
+        </div>
+    }
+</div>

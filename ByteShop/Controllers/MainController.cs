@@ -31,5 +31,16 @@ namespace ByteShop.Controllers
             return Json(new EntityViewModel { Id = e.Id, Description = e.Description });
         }
 
+        [HttpPost]
+        public ActionResult Delete(int id)
+        {
+            var ctx = new ByteShopDbContext();
+            var entity = ctx.Entities.FirstOrDefault(e => e.Id == id);
+            if (entity != null)
+                ctx.Entities.Remove(entity);
+            ctx.SaveChanges();
+            return Json(new { Status = "OK" });
+        }
+
     }
 }

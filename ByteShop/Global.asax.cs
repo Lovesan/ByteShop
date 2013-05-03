@@ -1,7 +1,10 @@
-﻿using System.Web.Http;
+﻿using System.Configuration;
+using System.Data.Entity;
+using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
 using ByteShop.App_Start;
+using ByteShop.Models;
 
 namespace ByteShop
 {
@@ -13,9 +16,12 @@ namespace ByteShop
         {
             AreaRegistration.RegisterAllAreas();
 
-            WebApiConfig.Register(GlobalConfiguration.Configuration);
-            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+            //WebApiConfig.Register(GlobalConfiguration.Configuration);
+            //FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+
+            if(ConfigurationManager.AppSettings["recreateDatabase"] == "true")
+                Database.SetInitializer(new DropCreateMySqlDatabaseIfModelChanges<ByteShopDbContext>());
         }
     }
 }
