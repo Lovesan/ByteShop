@@ -1,0 +1,42 @@
+﻿@*@model ByteShop.ViewModels.ViewModelBase*@
+
+<html>
+<head>
+    @*<title>@Model.Title</title>*@
+    <link rel="stylesheet" href="/Content/Site.css" />
+    <script type="text/javascript" src="/Scripts/jquery-2.0.0.min.js"></script>
+    <script type="text/javascript" src="/Scripts/jquery-ui-1.10.2.min.js"></script>
+    <script type="text/javascript" src="/Scripts/Main.js"></script>
+    <link rel="stylesheet" href="/Content/themes/base/jquery-ui.css" />
+</head>
+<body>
+    <nav>
+        
+                 @Html.ActionLink("Кузница сущностей", "Index") |
+        <span id="loglink">
+                @if (!User.Identity.IsAuthenticated)
+                {
+                    @Html.ActionLink("Login", "Login", "Account")
+                }
+                else
+                {
+                    <a id="logout">Logout</a>
+                
+                    <script>
+                        $('#logout').click(function () {
+                            $.ajax("/Account/Logout", 
+                                {
+                                    type:'POST', 
+                                    success: function () {
+                                        $('#loglink').replaceWith('<a href="/Account/Login">Login</a>');
+                                    }
+                                });
+                        });
+                    </script>
+                }
+            </span>
+    </nav>
+    @RenderBody()
+    @RenderSection("Scripts", false)
+</body>
+</html>

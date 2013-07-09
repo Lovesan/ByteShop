@@ -1,0 +1,37 @@
+﻿@model ByteShop.Models.Security.LoginModel
+
+@{
+    ViewBag.Title = "Login Form";
+}
+
+<h1>@ViewBag.Title</h1>
+<section id="loginform">
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <table>
+        <tr>
+            <td>@Html.LabelFor(m => m.Email)</td>
+            <td>@Html.TextBoxFor(m => m.Email)</td>
+            <td>@Html.ValidationMessageFor(m => m.Email)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(m => m.Password)</td>
+            <td>@Html.TextBoxFor(m => m.Password)</td>
+            <td>@Html.ValidationMessageFor(m => m.Password)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(m => m.RememberMe)</td>
+            <td>@Html.CheckBoxFor(m => m.RememberMe)</td>            
+        </tr>
+    </table>
+    <input type="submit" value="Login" />    
+    <p>
+        Not a member yet?
+        <br />
+        @Html.ActionLink("Register", "Register")
+    </p>
+}
+</section>

@@ -1,4 +1,8 @@
 ﻿drop database if exists byteshop;
 create database byteshop
   default character set = utf8;
+
+drop database if exists byteshop_security;
+create database byteshop_security
+  default character set = utf8;
   

@@ -127,12 +127,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\MainController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ByteShopDbContext.cs" />
     <Compile Include="Models\DbInitializers.cs" />
+    <Compile Include="Models\Security\LoginModel.cs" />
+    <Compile Include="Models\Security\Providers\ByteShopMembershipProvider.cs" />
+    <Compile Include="Models\Security\Providers\ByteShopRoleProvider.cs" />
+    <Compile Include="Models\Security\RegisterModel.cs" />
+    <Compile Include="Models\Security\Role.cs" />
+    <Compile Include="Models\Security\SecurityContext.cs" />
+    <Compile Include="Models\Security\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\EntityListViewModel.cs" />
     <Compile Include="ViewModels\EntityViewModel.cs" />
@@ -228,6 +236,9 @@
     <Content Include="Scripts\jquery-2.0.0.min.map" />
     <Content Include="Sql\InitUser.mysql" />
     <Content Include="Sql\InitDb.mysql" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Main\AddEntityToolbar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -239,10 +250,10 @@
     <Content Include="Views\Main\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Main\_viewstart.cshtml" />
+    <Content Include="Views\_viewstart.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Main\Layout.cshtml" />
+    <Content Include="Views\Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />

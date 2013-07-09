@@ -1,0 +1,6 @@
+﻿@model ByteShop.ViewModels.EntityViewModel
+
+
+<button id="AddButton" >Add</button>
+@Html.TextBoxFor(m => m.Description, new { id = "Description" })
+@Html.ValidationMessageFor(m => m.Description)

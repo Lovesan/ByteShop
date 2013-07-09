@@ -1,36 +1,7 @@
 ﻿@model ByteShop.ViewModels.EntityListViewModel
 
-<button id="AddButton">Add</button>
-<input id="Description" type="text" class="textinput" />
-<script type="text/javascript">
-    $("#AddButton").click(function () {
-        $.ajax(
-            "/Main/Create",
-            {
-                data: { description: $("#Description").val() },
-                success: function (data, status, jqxz) {
-                    $("#List").append(
-                        '<div class="ui-widget-content entity"'+ 'id="Entity_' + data.Id +'"' + ">" +
-                        "<button onclick='removeButtonClick(" + data.Id + ")' class='remove-button'>X</button>" +
-                        '<span class="desc">' + data.Description + "</span>" + "</div>");
-                },
-                type: 'POST'
-            }
-        );
-    });
 
-    function removeButtonClick(id) {
-        $.ajax(
-        "/Main/Delete/",
-            {
-                data: { Id : id },
-                success: function (data, status, jqxz) {
-                    $("#Entity_" + id).remove();
-                },
-                type: 'POST'
-            });
-    }
-</script>
+@{ Html.RenderPartial("AddEntityToolbar", new ByteShop.ViewModels.EntityViewModel()); }
 
 <div id="List">
     @foreach (var e in @Model.Entities)
@@ -43,3 +14,41 @@
         </div>
     }
 </div>
+
+@section Scripts {
+    <script type="text/javascript">
+        $("#AddButton").click(function () {
+            $.ajax(
+                "/Main/Create",
+                {
+                    data: { description: $("#Description").val() },
+                    success: function (data, status, jqxz) {
+                        $("#List").append(
+                            '<div class="ui-widget-content entity"' + 'id="Entity_' + data.Id + '"' + ">" +
+                            "<button onclick='removeButtonClick(" + data.Id + ")' class='remove-button'>X</button>" +
+                            '<span class="desc">' + data.Description + "</span>" + "</div>");
+                    },
+                    error: function (e, status, jqxz) {
+                        alert(e.responseText);
+                    },
+                    type: 'POST'
+                }
+            );
+        });
+
+        function removeButtonClick(id) {
+            $.ajax(
+            "/Main/Delete/",
+                {
+                    data: { Id: id },
+                    success: function (data, status, jqxz) {
+                        $("#Entity_" + id).remove();
+                    },
+                    error: function (e, status, jqxz) {
+                        alert(e.responseText);
+                    },
+                    type: 'POST'
+                });
+        }
+    </script>
+}

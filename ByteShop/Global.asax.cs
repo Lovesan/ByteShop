@@ -5,6 +5,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using ByteShop.App_Start;
 using ByteShop.Models;
+using ByteShop.Models.Security;
 
 namespace ByteShop
 {
@@ -22,6 +23,8 @@ namespace ByteShop
 
             if(ConfigurationManager.AppSettings["recreateDatabase"] == "true")
                 Database.SetInitializer(new DropCreateMySqlDatabaseIfModelChanges<ByteShopDbContext>());
+            if (ConfigurationManager.AppSettings["recreateDatabase"] == "true")
+                Database.SetInitializer(new DropCreateMySqlDatabaseIfModelChanges<SecurityContext>());
         }
     }
 }
